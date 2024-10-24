@@ -107,7 +107,7 @@ app.get("/contactOrder", authenticateToken, async (req, res) => {
 
 // Function to ping an external API
 const pingApi = async () => {
-  const url = "http://your-api-endpoint"; // Replace with the actual endpoint
+  const url = "https://newnode-zqdd.onrender.com/"; // Replace with the actual endpoint
   try {
     const response = await axios.get(url);
     console.log(`Pinged ${url}:`, response.status);
