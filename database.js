@@ -15,7 +15,7 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT || 3306, // Optional: Specify port (default is 3306)
     logging: false,            // Disable logging (optional)
     dialectOptions: {
-      connectTimeout: 60000 // Increase the timeout (in milliseconds)
+      connectTimeout: 100000 // Increase the timeout (in milliseconds)
     }
   
   
