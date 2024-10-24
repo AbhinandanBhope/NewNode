@@ -16,6 +16,12 @@ const sequelize = new Sequelize(
     logging: false,            // Disable logging (optional)
     dialectOptions: {
       connectTimeout: 100000 // Increase the timeout (in milliseconds)
+    },
+         pool: {
+      max: 10,                // Maximum number of connections
+      min: 0,                 // Minimum number of connections
+      acquire: 30000,         // Maximum time, in milliseconds, that pool will try to get connection before throwing error
+      idle: 10000             // Maximum time, in milliseconds, that a connection can be idle before being released
     }
   
   
