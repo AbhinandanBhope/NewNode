@@ -15,11 +15,10 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT || 3306, // Optional: Specify port (default is 3306)
     logging: false,            // Disable logging (optional)
     dialectOptions: {
-      ssl: {
-        require: true,         // SSL connection required
-        rejectUnauthorized: false // Disable rejection of unauthorized certificates
-      }
+      connectTimeout: 60000 // Increase the timeout (in milliseconds)
     }
+  
+  
   }
 );
 
