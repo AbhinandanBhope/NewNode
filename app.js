@@ -135,7 +135,7 @@ const pingApi = async (attempt = 1, maxAttempts = 5) => {
 };
 
 // Set up the interval to ping the API every 15 minutes (900,000 milliseconds)
-setInterval(() => pingApi(), 900000);
+setInterval(() => pingApi(), 300000);
 
 // Initial call to ping the API immediately on startup
 pingApi();
