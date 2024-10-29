@@ -2,7 +2,7 @@ const express = require("express");
 const sequelize = require("./database");
 const User = require("./user");
 const customerToContact = require("./contact");
-const contactOrderItem = require("./conatctOrder");
+const contactOrderItem = require("./contactOrder");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const axios = require("axios");
@@ -38,9 +38,7 @@ const authenticateToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token)
-    return res
-      .status(401)
-      .json({ message: "Access Denied: No token provided." });
+    return res.status(401).json({ message: "Access Denied: No token provided." });
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
@@ -76,10 +74,10 @@ app.post("/login", async (req, res) => {
 
 // Contact form submission endpoint
 app.post("/contact", async (req, res) => {
-  const { name, email, message, phoneNumber } = req.body;
+  const { name, email, message, phoneNumber ,productHSNCode } = req.body;
 
   try {
-    const contact = await customerToContact.create({ name, email, message, phoneNumber });
+    const contact = await customerToContact.create({ name, email, message, phoneNumber ,productHSNCode });
     return res.status(201).json({ status: true, message: "Form Submitted Successfully", contact });
   } catch (error) {
     res.status(400).json({ status: false, message: error.message });
@@ -98,10 +96,18 @@ app.get("/contact", authenticateToken, async (req, res) => {
 
 // Contact order submission endpoint
 app.post("/contactOrder", async (req, res) => {
-  const { name, email, message, phoneNumber, productName, quantity } = req.body;
+  const { name, email, message, phoneNumber, productName, quantity, productHSNCode } = req.body;
 
   try {
-    const order = await contactOrderItem.create({ name, email, message, phoneNumber, productName, quantity });
+    const order = await contactOrderItem.create({
+      name,
+      email,
+      message,
+      phoneNumber,
+      productName,
+      quantity,
+      productHSNCode,
+    });
     return res.status(201).json({ status: true, message: "Inquiry Submitted Successfully", order });
   } catch (error) {
     res.status(400).json({ status: false, message: error.message });
