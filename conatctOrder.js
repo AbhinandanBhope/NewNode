@@ -9,7 +9,6 @@ const contactOrderItem = sequelize.define("contactOrderItem", {
     primaryKey: true,
   },
   name: Sequelize.STRING,
-
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -23,6 +22,10 @@ const contactOrderItem = sequelize.define("contactOrderItem", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  productHSNCode: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
   message: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -31,7 +34,6 @@ const contactOrderItem = sequelize.define("contactOrderItem", {
     type: Sequelize.STRING,
     allowNull: true,
   },
-
   active: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
