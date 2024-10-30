@@ -69,7 +69,7 @@ app.post("/login", async (req, res) => {
 
     return res.status(200).json({ status: true, message: "Login Successful", accessToken });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 
@@ -81,7 +81,7 @@ app.post("/contact", async (req, res) => {
     const contact = await customerToContact.create({ name, email, message, phoneNumber ,productHSNCode });
     return res.status(201).json({ status: true, message: "Form Submitted Successfully", contact });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 
@@ -91,7 +91,7 @@ app.get("/contact", authenticateToken, async (req, res) => {
     const contacts = await customerToContact.findAll();
     return res.status(200).json({ status: true, contacts });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 
@@ -111,7 +111,7 @@ app.post("/contactOrder", async (req, res) => {
     });
     return res.status(201).json({ status: true, message: "Inquiry Submitted Successfully", order });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 
@@ -130,7 +130,7 @@ app.post("/customRequirementS", async (req, res) => {
     });
     return res.status(201).json({ status: true, message: "Inquiry Submitted Successfully", order2 });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 
@@ -140,7 +140,7 @@ app.get("/contactOrder", authenticateToken, async (req, res) => {
     const orders = await contactOrderItem.findAll();
     return res.status(200).json({ status: true, orders });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 
@@ -149,7 +149,7 @@ app.get("/customRequirement", authenticateToken, async (req, res) => {
     const orders3 = await customRequirement.findAll();
     return res.status(200).json({ status: true, orders3 });
   } catch (error) {
-    res.status(400).json({ status: false, message: error.message });
+    res.status(400).json({ status: false, message: "Oops! Let’s try that one more time." });
   }
 });
 // Function to ping an external API with retry logic
