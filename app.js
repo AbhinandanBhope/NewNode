@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const customRequirement = require("./customRequirement"):
 
 // Load environment variables
 dotenv.config();
@@ -114,6 +115,25 @@ app.post("/contactOrder", async (req, res) => {
   }
 });
 
+app.post("/customRequirement", async (req, res) => {
+  const { name, email, message, phoneNumber, productName, quantity, productHSNCode } = req.body;
+
+  try {
+    const order2 = await customRequirement.create({
+      name,
+      email,
+      message,
+      phoneNumber,
+      productName,
+      quantity,
+      productHSNCode,
+    });
+    return res.status(201).json({ status: true, message: "Inquiry Submitted Successfully", order2 });
+  } catch (error) {
+    res.status(400).json({ status: false, message: error.message });
+  }
+});
+
 // Get all contact orders (with authentication)
 app.get("/contactOrder", authenticateToken, async (req, res) => {
   try {
@@ -124,6 +144,14 @@ app.get("/contactOrder", authenticateToken, async (req, res) => {
   }
 });
 
+app.get("/customRequirement", authenticateToken, async (req, res) => {
+  try {
+    const orders3 = await customRequirement.findAll();
+    return res.status(200).json({ status: true, orders3 });
+  } catch (error) {
+    res.status(400).json({ status: false, message: error.message });
+  }
+});
 // Function to ping an external API with retry logic
 const pingApi = async (attempt = 1, maxAttempts = 5) => {
   const url = "https://newnode-zqdd.onrender.com/"; // Replace with actual endpoint
