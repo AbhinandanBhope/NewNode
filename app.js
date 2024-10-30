@@ -115,7 +115,7 @@ app.post("/contactOrder", async (req, res) => {
   }
 });
 
-app.post("/customRequirement", async (req, res) => {
+app.post("/customRequirementS", async (req, res) => {
   const { name, email, message, phoneNumber, productName, quantity, productHSNCode } = req.body;
 
   try {
