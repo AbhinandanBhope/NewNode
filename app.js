@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const axios = require("axios");
 const dotenv = require("dotenv");
-const customRequirement = require("./customRequirement"):
+const customRequirement = require("./customRequirement");
 
 // Load environment variables
 dotenv.config();
