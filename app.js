@@ -58,8 +58,9 @@ app.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ where: { email, password } });
 
-    if (!user)
+    if (!user){
       return res.status(400).json({ status: false, message: "Invalid email or password" });
+    }
 
     const accessToken = jwt.sign(
       { id: user.id, email: user.email },
