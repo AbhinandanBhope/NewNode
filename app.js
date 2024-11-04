@@ -168,11 +168,12 @@ const pingApi = async (attempt = 1, maxAttempts = 5) => {
   }
 };
 
-// Set up the interval to ping the API every 15 minutes (900,000 milliseconds)
-setInterval(() => pingApi(), 300000);
+// Set up the interval to ping the API every 50 seconds (50,000 milliseconds)
+setInterval(() => pingApi(), 50000);
 
 // Initial call to ping the API immediately on startup
 pingApi();
+
 
 // Retry logic for database connection
 const connectWithRetry = async (retries = 5, delay = 2000) => {
